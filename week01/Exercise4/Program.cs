@@ -1,50 +1,49 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        List<double> numbers = new List<double>();
-        Console.WriteLine("Enter numbers one at a time. Enter 0 to finish (0 will not be added).");
+        // Create 3–4 videos
+        Video video1 = new Video("Learning C# Classes", "Nate Dev", 480);
+        Video video2 = new Video("How YouTube Recommendations Work", "Tech Explained", 720);
+        Video video3 = new Video("Top 10 Productivity Tips", "LifeBoost", 560);
 
-        while (true)
+        // Add comments
+        video1.AddComment(new Comment("Alice", "Great explanation!"));
+        video1.AddComment(new Comment("John", "Very helpful, thanks."));
+        video1.AddComment(new Comment("Maria", "Clear and easy to understand."));
+
+        video2.AddComment(new Comment("Kevin", "Finally understand the algorithm!"));
+        video2.AddComment(new Comment("Sophia", "Well explained."));
+        video2.AddComment(new Comment("Daniel", "This helped my project."));
+
+        video3.AddComment(new Comment("Grace", "Tip #4 changed my life!"));
+        video3.AddComment(new Comment("Peter", "Awesome content."));
+        video3.AddComment(new Comment("Rita", "Taking notes—thanks!"));
+
+        // Put videos in a list
+        List<Video> videos = new List<Video> { video1, video2, video3 };
+
+        // Display details
+        foreach (Video video in videos)
         {
-            Console.Write("Enter a number (0 to stop): ");
-            string input = Console.ReadLine();
+            Console.WriteLine("=====================================");
+            Console.WriteLine($"Title: {video.GetTitle()}");
+            Console.WriteLine($"Author: {video.GetAuthor()}");
+            Console.WriteLine($"Length: {video.GetLengthSeconds()} seconds");
+            Console.WriteLine($"Number of Comments: {video.GetCommentCount()}");
+            Console.WriteLine("Comments:");
 
-            // Validate parse
-            if (!double.TryParse(input, out double value))
+            foreach (Comment comment in video.GetComments())
             {
-                Console.WriteLine("That's not a valid number. Please try again.");
-                continue;
+                Console.WriteLine($" - {comment.GetCommenterName()}: {comment.GetText()}");
             }
 
-            // Stop condition (do not add 0 to the list)
-            if (value == 0)
-                break;
-
-            numbers.Add(value);
+            Console.WriteLine();
         }
 
-        // Handle empty list
-        if (numbers.Count == 0)
-        {
-            Console.WriteLine("\nNo numbers were entered.");
-            return;
-        }
-
-        // Core computations
-        double sum = numbers.Sum();
-        double average = sum / numbers.Count;
-        double maximum = numbers.Max();
-
-        // Output results
-        Console.WriteLine("\nResults:");
-        Console.WriteLine($"Count:   {numbers.Count}");
-        Console.WriteLine($"Sum:     {sum}");
-        Console.WriteLine($"Average: {average}");
-        Console.WriteLine($"Maximum: {maximum}");
+        Console.WriteLine("Program finished. Take your screenshot now.");
     }
 }
