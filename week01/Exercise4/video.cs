@@ -1,17 +1,18 @@
+using System;
 using System.Collections.Generic;
 
 public class Video
 {
     private string _title;
     private string _author;
-    private int _lengthSeconds;
+    private int _lengthInSeconds;
     private List<Comment> _comments = new List<Comment>();
 
-    public Video(string title, string author, int lengthSeconds)
+    public Video(string title, string author, int lengthInSeconds)
     {
         _title = title;
         _author = author;
-        _lengthSeconds = lengthSeconds;
+        _lengthInSeconds = lengthInSeconds;
     }
 
     public void AddComment(Comment comment)
@@ -24,23 +25,19 @@ public class Video
         return _comments.Count;
     }
 
-    public string GetTitle()
+    public void DisplayVideoInfo()
     {
-        return _title;
-    }
+        Console.WriteLine($"Title: {_title}");
+        Console.WriteLine($"Author: {_author}");
+        Console.WriteLine($"Length: {_lengthInSeconds} seconds");
+        Console.WriteLine($"Number of Comments: {GetCommentCount()}");
+        Console.WriteLine("Comments:");
 
-    public string GetAuthor()
-    {
-        return _author;
-    }
+        foreach (Comment comment in _comments)
+        {
+            Console.WriteLine($" - {comment.GetName()}: {comment.GetText()}");
+        }
 
-    public int GetLengthSeconds()
-    {
-        return _lengthSeconds;
-    }
-
-    public List<Comment> GetComments()
-    {
-        return _comments;
+        Console.WriteLine();
     }
 }

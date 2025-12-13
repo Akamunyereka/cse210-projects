@@ -5,45 +5,33 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Create 3–4 videos
-        Video video1 = new Video("Learning C# Classes", "Nate Dev", 480);
-        Video video2 = new Video("How YouTube Recommendations Work", "Tech Explained", 720);
-        Video video3 = new Video("Top 10 Productivity Tips", "LifeBoost", 560);
+        List<Video> videos = new List<Video>();
 
-        // Add comments
-        video1.AddComment(new Comment("Alice", "Great explanation!"));
-        video1.AddComment(new Comment("John", "Very helpful, thanks."));
-        video1.AddComment(new Comment("Maria", "Clear and easy to understand."));
+        // Video 1
+        Video video1 = new Video("Learning C# Basics", "Tech Academy", 420);
+        video1.AddComment(new Comment("Alice", "Great explanation, thank you!"));
+        video1.AddComment(new Comment("John", "This helped me so much."));
+        video1.AddComment(new Comment("Sara", "Clear and simple!"));
+        videos.Add(video1);
 
-        video2.AddComment(new Comment("Kevin", "Finally understand the algorithm!"));
-        video2.AddComment(new Comment("Sophia", "Well explained."));
-        video2.AddComment(new Comment("Daniel", "This helped my project."));
+        // Video 2
+        Video video2 = new Video("How to Cook Rice", "Kitchen Master", 300);
+        video2.AddComment(new Comment("Mike", "Tried it and it worked perfectly."));
+        video2.AddComment(new Comment("Anna", "Finally I can cook rice correctly."));
+        video2.AddComment(new Comment("David", "Short and helpful."));
+        videos.Add(video2);
 
-        video3.AddComment(new Comment("Grace", "Tip #4 changed my life!"));
-        video3.AddComment(new Comment("Peter", "Awesome content."));
-        video3.AddComment(new Comment("Rita", "Taking notes—thanks!"));
+        // Video 3
+        Video video3 = new Video("Exercise at Home", "Fitness Daily", 600);
+        video3.AddComment(new Comment("Linda", "I'm sweating already!"));
+        video3.AddComment(new Comment("George", "This workout is intense."));
+        video3.AddComment(new Comment("Nina", "Thanks for the routine."));
+        videos.Add(video3);
 
-        // Put videos in a list
-        List<Video> videos = new List<Video> { video1, video2, video3 };
-
-        // Display details
+        // Display all videos
         foreach (Video video in videos)
         {
-            Console.WriteLine("=====================================");
-            Console.WriteLine($"Title: {video.GetTitle()}");
-            Console.WriteLine($"Author: {video.GetAuthor()}");
-            Console.WriteLine($"Length: {video.GetLengthSeconds()} seconds");
-            Console.WriteLine($"Number of Comments: {video.GetCommentCount()}");
-            Console.WriteLine("Comments:");
-
-            foreach (Comment comment in video.GetComments())
-            {
-                Console.WriteLine($" - {comment.GetCommenterName()}: {comment.GetText()}");
-            }
-
-            Console.WriteLine();
+            video.DisplayVideoInfo();
         }
-
-        Console.WriteLine("Program finished. Take your screenshot now.");
     }
 }
